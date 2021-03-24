@@ -7,6 +7,7 @@ import android.graphics.Path
 import android.graphics.PathMeasure
 import android.util.AttributeSet
 import android.view.View
+import com.shawpoo.simplehencoder.app.ext.dp
 
 /**
  * @author: wuxiaopeng
@@ -14,7 +15,7 @@ import android.view.View
  * @desc:
  */
 
-val R = 100f.px
+val R = 100f.dp
 
 class TestView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 

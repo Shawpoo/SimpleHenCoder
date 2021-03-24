@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
-import com.shawpoo.simplehencoder.app.drawing.view.px
+import com.shawpoo.simplehencoder.app.ext.dp
 
 /**
  * @author: wuxiaopeng
@@ -24,17 +24,17 @@ class SampleXfermodeView(context: Context?, attrs: AttributeSet?) : View(context
 
     // +1 目的是防止转int和float有略微差异导致图形不全
     private val circleBitmap =
-        Bitmap.createBitmap((RADIUS * 3 + 1).px.toInt(), (RADIUS * 3 + 1).px.toInt(), Bitmap.Config.ARGB_8888)
+        Bitmap.createBitmap((RADIUS * 3 + 1).dp.toInt(), (RADIUS * 3 + 1).dp.toInt(), Bitmap.Config.ARGB_8888)
     private val squareBitmap =
-        Bitmap.createBitmap((RADIUS * 3 + 1).px.toInt(), (RADIUS * 3 + 1).px.toInt(), Bitmap.Config.ARGB_8888)
+        Bitmap.createBitmap((RADIUS * 3 + 1).dp.toInt(), (RADIUS * 3 + 1).dp.toInt(), Bitmap.Config.ARGB_8888)
 
     init {
         val canvas = Canvas(circleBitmap)
         paint.color = Color.parseColor("#DB1860")
-        canvas.drawOval((RADIUS * 1).px, 0f.px, (RADIUS * 3).px, (RADIUS * 2).px, paint)
+        canvas.drawOval((RADIUS * 1).dp, 0f.dp, (RADIUS * 3).dp, (RADIUS * 2).dp, paint)
         paint.color = Color.parseColor("#2196F3")
         canvas.setBitmap(squareBitmap)
-        canvas.drawRect(0f.px, (RADIUS * 1).px, (RADIUS * 2).px, (RADIUS * 3).px, paint)
+        canvas.drawRect(0f.dp, (RADIUS * 1).dp, (RADIUS * 2).dp, (RADIUS * 3).dp, paint)
     }
 
     fun setXfermode(mode: PorterDuff.Mode) {
@@ -47,10 +47,10 @@ class SampleXfermodeView(context: Context?, attrs: AttributeSet?) : View(context
 
     override fun onDraw(canvas: Canvas) {
         val count = canvas.saveLayer(bounds, null)
-        canvas.drawBitmap(circleBitmap, (RADIUS * 2).px, (RADIUS * 2).px, paint)
+        canvas.drawBitmap(circleBitmap, (RADIUS * 2).dp, (RADIUS * 2).dp, paint)
 
         paint.xfermode = xfermode // 设置离屏缓冲
-        canvas.drawBitmap(squareBitmap, (RADIUS * 2).px, (RADIUS * 2).px, paint)
+        canvas.drawBitmap(squareBitmap, (RADIUS * 2).dp, (RADIUS * 2).dp, paint)
 
         paint.xfermode = null
         canvas.restoreToCount(count)

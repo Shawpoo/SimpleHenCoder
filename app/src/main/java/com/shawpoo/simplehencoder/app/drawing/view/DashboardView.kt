@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import com.shawpoo.simplehencoder.app.ext.dp
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -13,10 +14,10 @@ import kotlin.math.sin
  * @desc: 仪表盘(表盘+指针)
  */
 private const val OPEN_ANGLE = 120f
-private val RADIUS = 150f.px // 表盘半径
-private val LENGTH = 120f.px // 指针长度
-private val DASH_WIDTH = 2f.px // 刻度粗细
-private val DASH_LENGTH = 8f.px // 刻度长度
+private val RADIUS = 150f.dp // 表盘半径
+private val LENGTH = 120f.dp // 指针长度
+private val DASH_WIDTH = 2f.dp // 刻度粗细
+private val DASH_LENGTH = 8f.dp // 刻度长度
 
 private const val MARK = 8
 
@@ -28,7 +29,7 @@ class DashboardView(context: Context?, attrs: AttributeSet?) : View(context, att
     private lateinit var pathEffect: PathEffect
 
     init {
-        paint.strokeWidth = 3f.px
+        paint.strokeWidth = 3f.dp
         paint.style = Paint.Style.STROKE
         dashPath.addRect(0f, 0f, DASH_WIDTH, DASH_LENGTH, Path.Direction.CCW)
     }

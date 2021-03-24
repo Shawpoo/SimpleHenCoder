@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import com.shawpoo.simplehencoder.app.ext.dp
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -12,10 +13,10 @@ import kotlin.math.sin
  * @date: 2021/3/21
  * @desc: 饼图
  */
-private val RADIUS = 150f.px
+private val RADIUS = 150f.dp
 private val ANGLES = floatArrayOf(60f, 90f, 150f, 60f)
 private val COLORS = listOf(Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE)
-private val OFFSET_LENGTH = 20f.px
+private val OFFSET_LENGTH = 20f.dp
 
 class PieView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 

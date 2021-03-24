@@ -5,7 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.shawpoo.simplehencoder.app.R
-import com.shawpoo.simplehencoder.app.drawing.view.px
+import com.shawpoo.simplehencoder.app.ext.dp
 
 /**
  * @author: wuxiaopeng
@@ -13,8 +13,8 @@ import com.shawpoo.simplehencoder.app.drawing.view.px
  * @desc: 使用Xfermode实现圆形头像
  */
 
-private val IMAGE_WIDTH = 200F.px
-private val IMAGE_PADDING = 20f.px
+private val IMAGE_WIDTH = 200F.dp
+private val IMAGE_PADDING = 20f.dp
 private val XFERMODE = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
 
 class AvatarView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
