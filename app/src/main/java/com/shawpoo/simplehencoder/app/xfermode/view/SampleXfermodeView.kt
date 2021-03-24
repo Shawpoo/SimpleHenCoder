@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
-import com.shawpoo.simplehencoder.app.R
 import com.shawpoo.simplehencoder.app.drawing.view.px
 
 /**
@@ -14,37 +13,44 @@ import com.shawpoo.simplehencoder.app.drawing.view.px
  *        官方文档：https://developer.android.google.cn/reference/android/graphics/PorterDuff.Mode?hl=en
  */
 
+private const val RADIUS = 22f
 
-class XfermodeView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+class SampleXfermodeView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
     private var xfermode = PorterDuffXfermode(PorterDuff.Mode.DARKEN)
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val bounds = RectF(150f.px, 50f.px, 300f.px, 200f.px)
 
+    private lateinit var bounds: RectF
+
+    // +1 目的是防止转int和float有略微差异导致图形不全
     private val circleBitmap =
-        Bitmap.createBitmap(150f.px.toInt(), 150f.px.toInt(), Bitmap.Config.ARGB_8888)
+        Bitmap.createBitmap((RADIUS * 3 + 1).px.toInt(), (RADIUS * 3 + 1).px.toInt(), Bitmap.Config.ARGB_8888)
     private val squareBitmap =
-        Bitmap.createBitmap(150f.px.toInt(), 150f.px.toInt(), Bitmap.Config.ARGB_8888)
+        Bitmap.createBitmap((RADIUS * 3 + 1).px.toInt(), (RADIUS * 3 + 1).px.toInt(), Bitmap.Config.ARGB_8888)
 
     init {
         val canvas = Canvas(circleBitmap)
         paint.color = Color.parseColor("#DB1860")
-        canvas.drawOval(50f.px, 0f.px, 150f.px, 100f.px, paint)
+        canvas.drawOval((RADIUS * 1).px, 0f.px, (RADIUS * 3).px, (RADIUS * 2).px, paint)
         paint.color = Color.parseColor("#2196F3")
         canvas.setBitmap(squareBitmap)
-        canvas.drawRect(0f.px, 50f.px, 100f.px, 150f.px, paint)
+        canvas.drawRect(0f.px, (RADIUS * 1).px, (RADIUS * 2).px, (RADIUS * 3).px, paint)
     }
 
-    public fun setXfermode(mode: PorterDuff.Mode) {
+    fun setXfermode(mode: PorterDuff.Mode) {
         xfermode = PorterDuffXfermode(mode)
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        bounds = RectF(0f, 0f, width.toFloat(), height.toFloat())
     }
 
     override fun onDraw(canvas: Canvas) {
         val count = canvas.saveLayer(bounds, null)
-        canvas.drawBitmap(circleBitmap, 150f.px, 50f.px, paint)
+        canvas.drawBitmap(circleBitmap, (RADIUS * 2).px, (RADIUS * 2).px, paint)
 
         paint.xfermode = xfermode // 设置离屏缓冲
-        canvas.drawBitmap(squareBitmap, 150f.px, 50f.px, paint)
+        canvas.drawBitmap(squareBitmap, (RADIUS * 2).px, (RADIUS * 2).px, paint)
 
         paint.xfermode = null
         canvas.restoreToCount(count)

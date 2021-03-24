@@ -10,7 +10,7 @@ import com.shawpoo.simplehencoder.app.drawing.view.px
 /**
  * @author: wuxiaopeng
  * @date: 2021/3/23
- * @desc:
+ * @desc: 使用Xfermode实现圆形头像
  */
 
 private val IMAGE_WIDTH = 200F.px
