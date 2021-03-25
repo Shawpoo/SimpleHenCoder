@@ -11,13 +11,10 @@
         android:id="@+id/btn_xfermode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Xfermode" />
+        android:text="Xfermode"
+        android:visibility="gone" />
 
-    <com.shawpoo.simplehencoder.app.xfermode.view.XfermodeView
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
-
-    <com.shawpoo.simplehencoder.app.xfermode.view.AvatarView
+    <com.shawpoo.simplehencoder.app.text.view.MultilineTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>
