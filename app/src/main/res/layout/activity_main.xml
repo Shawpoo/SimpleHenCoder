@@ -14,7 +14,5 @@
         android:text="Xfermode"
         android:visibility="gone" />
 
-    <com.shawpoo.simplehencoder.app.text.view.MultilineTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/item_multilinetextview" />
 </LinearLayout>

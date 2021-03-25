@@ -1,4 +1,4 @@
-package com.shawpoo.simplehencoder.app.text.view
+package com.shawpoo.simplehencoder.app.text.sample
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -10,60 +10,70 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.core.content.res.ResourcesCompat
 import com.shawpoo.simplehencoder.app.R
 import com.shawpoo.simplehencoder.app.ext.dp
 
 /**
  * @author: wuxiaopeng
- * @date: 2021/3/24
- * @desc: 多行文字布局，图文混排
+ * @date: 2021/3/25
+ * @desc:
  */
-private val IMAGE_SIZE = 150.dp
-private val IMAGE_PADDING = 50.dp
+private val IMAGE_SIZE = 20.dp
 
-class MultilineTextView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
+class SimpleMultilineTextView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 
-    val text =
+    private var text =
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     private val textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
-        textSize = 16.dp
+        textSize = 13.dp
     }
     private val paint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
-        textSize = 16.dp
-        typeface = ResourcesCompat.getFont(context, R.font.font) // 设置字体，对比不同字体的差异
+        textSize = 18.dp
     }
-    private val bitmap = getAvatar(IMAGE_SIZE.toInt())
+    private var bitmap = getAvatar(IMAGE_SIZE.toInt())
     private val fontMetrics = Paint.FontMetrics()
-
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onDraw(canvas: Canvas) {
-        //        val builder = StaticLayout.Builder.obtain(text, 0, text.length, textPaint, width)
-        //            .setAlignment(Layout.Alignment.ALIGN_NORMAL).setIncludePad(false)
-        //        val staticLayout = builder.build()
-        //        staticLayout.draw(canvas)
-
-        canvas.drawBitmap(bitmap, width - IMAGE_SIZE, IMAGE_PADDING, paint)
+        canvas.drawBitmap(bitmap, 0f, 0f, paint)
         paint.getFontMetrics(fontMetrics) // 记录测量的指标
 
         val measureWidth = floatArrayOf(0f)
         var start = 0
         var count: Int
         var verticalOffset = -fontMetrics.top
+        var horizontalOffset: Float
         var maxWidth: Float
+        var lineCount = 0
         while (start < text.length) {
-            maxWidth =
-                if (verticalOffset + fontMetrics.bottom < IMAGE_PADDING || verticalOffset + fontMetrics.top > IMAGE_PADDING + IMAGE_SIZE) {
-                    width.toFloat()
-                } else {
-                    width.toFloat() - IMAGE_SIZE
-                }
+            if (verticalOffset + fontMetrics.top > IMAGE_SIZE) {
+                horizontalOffset = 0f
+                maxWidth = width.toFloat()
+            } else {
+                horizontalOffset = IMAGE_SIZE + 3.dp
+                maxWidth = width.toFloat() - IMAGE_SIZE
+            }
             count = paint.breakText(text, start, text.length, true, maxWidth, measureWidth)
-            canvas.drawText(text, start, start + count, 0f, verticalOffset, paint)
+            if (lineCount == 1 && (start + count < text.length)) {
+                text =  text.substring(start, start + count - 1) + "..."
+                canvas.drawText(text, 0, text.length, horizontalOffset, verticalOffset, paint)
+            } else {
+                canvas.drawText(text, start, start + count, horizontalOffset, verticalOffset, paint)
+            }
             start += count
+            lineCount++
             verticalOffset += paint.fontSpacing
         }
+    }
+
+    fun setBitmap(oldBitmap: Bitmap) {
+        bitmap = Bitmap.createScaledBitmap(oldBitmap, IMAGE_SIZE.toInt(), IMAGE_SIZE.toInt(), true)
+        invalidate()
+    }
+
+    fun setText(str: String) {
+        text = str
+        invalidate()
     }
 
     private fun getAvatar(width: Int): Bitmap {
