@@ -1,14 +1,15 @@
-package com.shawpoo.simplehencoder.app.animation
+package com.shawpoo.simplehencoder.app.animation.sample
 
-import android.animation.Keyframe
 import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
+import android.animation.TypeEvaluator
 import android.content.Context
 import android.content.Intent
+import android.graphics.PointF
 import android.os.Bundle
-import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import com.shawpoo.simplehencoder.app.R
+import com.shawpoo.simplehencoder.app.animation.view.PointFEvaluator
+import com.shawpoo.simplehencoder.app.animation.view.ProvinceEvaluator
 import com.shawpoo.simplehencoder.app.ext.dp
 import kotlinx.android.synthetic.main.activity_sample_animation.*
 
@@ -83,11 +84,28 @@ class SampleAnimationActivity : AppCompatActivity() {
             start()
         }*/
 
-//        ObjectAnimator.ofFloat().apply {
-//            // 插值器 很多种
-//            interpolator = AccelerateDecelerateInterpolator()
+        //        ObjectAnimator.ofFloat().apply {
+        //            // 插值器 很多种
+        //            interpolator = AccelerateDecelerateInterpolator()
+        //        }
+
+        // 计算
+//        ObjectAnimator.ofObject(view3, "point", PointFEvaluator(), PointF(100.dp, 200.dp)).apply {
+//            startDelay = 1000
+//            duration = 2000
+//            start()
 //        }
 
+        // 字符串动画
+        /*ObjectAnimator.ofObject(view4, "province", ProvinceEvaluator(), "澳门特别行政区").apply {
+            startDelay = 1000
+            duration = 10000
+            start()
+        }*/
+
+        view4.animate()
+            .translationY(200.dp)
+            .withLayer() // 临时开始硬件离屏缓冲，动画结束则关闭
 
     }
 

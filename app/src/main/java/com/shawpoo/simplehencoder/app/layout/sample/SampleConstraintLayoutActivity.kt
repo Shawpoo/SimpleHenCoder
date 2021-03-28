@@ -10,11 +10,11 @@ import com.shawpoo.simplehencoder.app.R
  * @desc: ConstraintLayout示例
  * https://www.jianshu.com/p/17ec9bd6ca8a
  */
-class ConstraintLayoutSampleActivity : AppCompatActivity() {
+class SampleConstraintLayoutActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_constraintlayout_sample)
+        setContentView(R.layout.activity_sample_constraintlayout)
     }
 
 }

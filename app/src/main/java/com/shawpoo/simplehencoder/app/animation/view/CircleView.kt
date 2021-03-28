@@ -1,4 +1,4 @@
-package com.shawpoo.simplehencoder.app.animation
+package com.shawpoo.simplehencoder.app.animation.view
 
 import android.content.Context
 import android.graphics.Canvas

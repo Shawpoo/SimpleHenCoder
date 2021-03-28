@@ -1,4 +1,4 @@
-package com.shawpoo.simplehencoder.app.animation
+package com.shawpoo.simplehencoder.app.animation.view
 
 import android.content.Context
 import android.graphics.*
@@ -20,9 +20,11 @@ private val IMAGE_PADDING = 100f.dp
 class CameraAnimationView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val bitmap = getAvatar(IMAGE_WIDTH.toInt())
+    private val bitmap = getAvatar(
+        IMAGE_WIDTH.toInt())
     private val clipped = Path().apply {
-        addOval(IMAGE_PADDING, IMAGE_PADDING, IMAGE_PADDING + IMAGE_WIDTH,
+        addOval(IMAGE_PADDING,
+            IMAGE_PADDING, IMAGE_PADDING + IMAGE_WIDTH,
             IMAGE_PADDING + IMAGE_WIDTH, Path.Direction.CCW) // 椭圆
     }
 
@@ -55,30 +57,39 @@ class CameraAnimationView(context: Context?, attrs: AttributeSet?) : View(contex
 
         // 上半部分
         canvas.withSave {
-            canvas.translate(IMAGE_PADDING + IMAGE_WIDTH / 2, IMAGE_PADDING + IMAGE_WIDTH / 2)
+            canvas.translate(
+                IMAGE_PADDING + IMAGE_WIDTH / 2, IMAGE_PADDING + IMAGE_WIDTH / 2)
             canvas.rotate(-flipRotation)
             camera.save()
             camera.rotateX(topFlip)
             camera.applyToCanvas(canvas)
             camera.restore()
-            canvas.clipRect(-IMAGE_WIDTH, -IMAGE_WIDTH, IMAGE_WIDTH, 0f)
+            canvas.clipRect(-IMAGE_WIDTH, -IMAGE_WIDTH,
+                IMAGE_WIDTH, 0f)
             canvas.rotate(flipRotation)
             canvas.translate(-(IMAGE_PADDING + IMAGE_WIDTH / 2), -(IMAGE_PADDING + IMAGE_WIDTH / 2))
-            canvas.drawBitmap(bitmap, IMAGE_PADDING, IMAGE_PADDING, paint)
+            canvas.drawBitmap(bitmap,
+                IMAGE_PADDING,
+                IMAGE_PADDING, paint)
         }
 
         // 下半部分
         canvas.withSave {
-            canvas.translate(IMAGE_PADDING + IMAGE_WIDTH / 2, IMAGE_PADDING + IMAGE_WIDTH / 2)
+            canvas.translate(
+                IMAGE_PADDING + IMAGE_WIDTH / 2, IMAGE_PADDING + IMAGE_WIDTH / 2)
             canvas.rotate(-flipRotation)
             camera.save()
             camera.rotateX(bottomFlip)
             camera.applyToCanvas(canvas)
             camera.restore()
-            canvas.clipRect(-IMAGE_WIDTH, 0f, IMAGE_WIDTH, IMAGE_WIDTH)
+            canvas.clipRect(-IMAGE_WIDTH, 0f,
+                IMAGE_WIDTH,
+                IMAGE_WIDTH)
             canvas.rotate(flipRotation)
             canvas.translate(-(IMAGE_PADDING + IMAGE_WIDTH / 2), -(IMAGE_PADDING + IMAGE_WIDTH / 2))
-            canvas.drawBitmap(bitmap, IMAGE_PADDING, IMAGE_PADDING, paint)
+            canvas.drawBitmap(bitmap,
+                IMAGE_PADDING,
+                IMAGE_PADDING, paint)
         }
     }
 
