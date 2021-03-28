@@ -5,18 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/teal_700"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_xfermode"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Xfermode"
-        android:visibility="gone" />
+        android:background="#30000000">
 
-    <com.shawpoo.simplehencoder.app.clipandcamera.view.CameraView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <!--    <include layout="@layout/item_multilinetextview" />-->
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#30ff0000">
+
+        <com.shawpoo.simplehencoder.app.custom.view.MaterialEditText
+            android:id="@+id/met"
+            android:hint="Username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 </LinearLayout>
