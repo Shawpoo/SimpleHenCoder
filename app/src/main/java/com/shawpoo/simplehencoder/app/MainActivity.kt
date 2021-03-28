@@ -20,18 +20,18 @@ class MainActivity : AppCompatActivity() {
             XfermodeListActivity.open(this)
         }
 
-        val url =
-            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1206601717,1553984173&fm=26&gp=0.jpg"
-
-        Glide.with(this).asBitmap().load(url).into(object : CustomTarget<Bitmap>() {
-            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                item_smt.setBitmap(resource)
-                item_smt.setText("阿德拉打扫房间啊水电费假啦撒旦法两三点解放啦惊世毒妃逻辑啊大法师地方撒旦法")
-            }
-
-            override fun onLoadCleared(placeholder: Drawable?) {
-
-            }
-        })
+//        val url =
+//            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1206601717,1553984173&fm=26&gp=0.jpg"
+//
+//        Glide.with(this).asBitmap().load(url).into(object : CustomTarget<Bitmap>() {
+//            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+//                item_smt.setBitmap(resource)
+//                item_smt.setText("阿德拉打扫房间啊水电费假啦撒旦法两三点解放啦惊世毒妃逻辑啊大法师地方撒旦法")
+//            }
+//
+//            override fun onLoadCleared(placeholder: Drawable?) {
+//
+//            }
+//        })
     }
 }
