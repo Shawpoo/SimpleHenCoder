@@ -74,6 +74,7 @@ class MaterialEditText(context: Context, attrs: AttributeSet) : AppCompatEditTex
         super.onDraw(canvas)
 
         paint.alpha = (floatingLabelFraction * 0xff).toInt()
+        paint.textSize = floatingLabelFraction * TEXT_SIZE
         val currentVerticalValue =
             VERTICAL_OFFSET + EXTRA_VERTICAL_OFFSET * (1 - floatingLabelFraction)
         canvas.drawText(hint.toString(), HORIZONTAL_OFFSET, currentVerticalValue, paint)

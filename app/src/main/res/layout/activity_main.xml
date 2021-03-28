@@ -25,6 +25,7 @@
         <com.shawpoo.simplehencoder.app.custom.view.MaterialEditText
             android:id="@+id/met"
             android:hint="Username"
+            app:userFloatingLabel="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </FrameLayout>

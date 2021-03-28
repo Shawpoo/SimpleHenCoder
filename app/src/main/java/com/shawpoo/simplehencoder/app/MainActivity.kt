@@ -11,9 +11,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        met.postDelayed(3000) {
-            met.useFloatingLabel = false
-        }
-
     }
 }
