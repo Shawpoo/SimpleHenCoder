@@ -7,26 +7,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <FrameLayout
+    <com.shawpoo.simplehencoder.app.custom.view.MaterialEditText
+        android:id="@+id/met"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#30000000">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#30ff0000">
-
-        <com.shawpoo.simplehencoder.app.custom.view.MaterialEditText
-            android:id="@+id/met"
-            android:hint="Username"
-            app:userFloatingLabel="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
+        android:hint="Username"
+        app:userFloatingLabel="true" />
 </LinearLayout>

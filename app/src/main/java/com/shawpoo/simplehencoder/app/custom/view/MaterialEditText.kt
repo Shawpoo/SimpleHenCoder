@@ -34,7 +34,7 @@ class MaterialEditText(context: Context, attrs: AttributeSet) : AppCompatEditTex
         ObjectAnimator.ofFloat(this, "floatingLabelFraction", 0f, 1f)
     }
 
-    var useFloatingLabel = false
+    private var useFloatingLabel = false
         set(value) {
             if (field != value) {
                 field = value
