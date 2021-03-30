@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".MainActivity">
 
     <Button
@@ -12,4 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Product List" />
+    <Button
+        android:id="@+id/btn_drawable_and_bitmap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Drawable and Bitmap" />
 </LinearLayout>
