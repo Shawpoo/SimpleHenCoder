@@ -36,7 +36,7 @@ class SimpleMultilineTextView(context: Context, attrs: AttributeSet?) : View(con
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onDraw(canvas: Canvas) {
         canvas.drawBitmap(bitmap, 0f, 0f, paint)
-        paint.getFontMetrics(fontMetrics) // 记录测量的指标
+        paint.getFontMetrics(fontMetrics)
 
         val measureWidth = floatArrayOf(0f)
         var start = 0
@@ -55,8 +55,9 @@ class SimpleMultilineTextView(context: Context, attrs: AttributeSet?) : View(con
             }
             count = paint.breakText(text, start, text.length, true, maxWidth, measureWidth)
             if (lineCount == 1 && (start + count < text.length)) {
-                text =  text.substring(start, start + count - 1) + "..."
-                canvas.drawText(text, 0, text.length, horizontalOffset, verticalOffset, paint)
+                var tempText = text.substring(start, start + count - 1) + "..."
+                canvas.drawText(tempText, 0, tempText.length, horizontalOffset, verticalOffset, paint)
+                break
             } else {
                 canvas.drawText(text, start, start + count, horizontalOffset, verticalOffset, paint)
             }
@@ -67,7 +68,8 @@ class SimpleMultilineTextView(context: Context, attrs: AttributeSet?) : View(con
     }
 
     fun setBitmap(oldBitmap: Bitmap) {
-        bitmap = Bitmap.createScaledBitmap(oldBitmap, IMAGE_SIZE.toInt(), IMAGE_SIZE.toInt(), true)
+        bitmap =
+            Bitmap.createScaledBitmap(oldBitmap, IMAGE_SIZE.toInt(), IMAGE_SIZE.toInt(), true)
         invalidate()
     }
 
@@ -79,11 +81,11 @@ class SimpleMultilineTextView(context: Context, attrs: AttributeSet?) : View(con
     private fun getAvatar(width: Int): Bitmap {
         val options = BitmapFactory.Options()
         options.inJustDecodeBounds = true
-        BitmapFactory.decodeResource(resources, R.mipmap.ic_default_avatar, options)
+        BitmapFactory.decodeResource(resources, R.drawable.twitter, options)
         options.inJustDecodeBounds = false
         options.inDensity = options.outWidth
         options.inTargetDensity = width
-        return BitmapFactory.decodeResource(resources, R.mipmap.ic_default_avatar, options)
+        return BitmapFactory.decodeResource(resources, R.drawable.twitter, options)
     }
 
 }
