@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.postDelayed
 import com.shawpoo.simplehencoder.app.animation.sample.SampleAnimationActivity
 import com.shawpoo.simplehencoder.app.bitmapanddrawable.sample.DrawableActivity
+import com.shawpoo.simplehencoder.app.layout.sample.SampleLayoutActivity
 import com.shawpoo.simplehencoder.app.text.sample.ProductListActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_drawable_and_bitmap.setOnClickListener {
-            DrawableActivity.open(this)
+            SampleLayoutActivity.open(this)
         }
 
     }
