@@ -22,6 +22,7 @@
         <activity android:name=".text.sample.ProductListActivity" />
         <activity android:name=".bitmapanddrawable.sample.DrawableActivity" />
         <activity android:name=".layout.sample.SampleLayoutActivity" />
+        <activity android:name=".layout.sample.TagLayoutActivity" />
 
         <meta-data
             android:name="com.shawpoo.simplehencoder.app.util.MyAppGlideModule"
