@@ -30,7 +30,7 @@ class ColorTextView(context: Context?, attrs: AttributeSet?) : AppCompatTextView
 
     init {
         setTextColor(Color.WHITE)
-        textSize = TEXT_SIZES[random.nextInt(3)].toFloat()
+        textSize = TEXT_SIZES[random.nextInt(TEXT_SIZES.size)].toFloat()
         paint.color = COLORS[random.nextInt(COLORS.size)]
         setPadding(X_PADDING, Y_PADDING, X_PADDING, Y_PADDING)
     }
