@@ -12,7 +12,7 @@ import java.util.*
 /**
  * @author: wuxiaopeng
  * @date: 2021/4/1
- * @desc:
+ * @desc: 自定义TextView，随机设置背景色和大小，用于测试 @see[TagLayout]
  */
 
 private val COLORS = intArrayOf(Color.parseColor("#E91E63"), Color.parseColor("#673AB7"),
@@ -23,7 +23,7 @@ private val CORNER_RADIUS = 4.dp
 private val X_PADDING = 16.dp.toInt()
 private val Y_PADDING = 8.dp.toInt()
 
-class ColorTextView(context: Context?, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
+class ColoredTextView(context: Context?, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val random = Random()

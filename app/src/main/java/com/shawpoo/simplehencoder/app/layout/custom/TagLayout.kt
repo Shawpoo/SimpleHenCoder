@@ -10,7 +10,7 @@ import kotlin.math.max
 /**
  * @author: wuxiaopeng
  * @date: 2021/4/2
- * @desc:
+ * @desc: 自定义ViewGroup
  */
 class TagLayout(context: Context?, attrs: AttributeSet?) : ViewGroup(context, attrs) {
 
