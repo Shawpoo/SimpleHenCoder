@@ -8,6 +8,7 @@ import com.shawpoo.simplehencoder.app.bitmapanddrawable.sample.DrawableActivity
 import com.shawpoo.simplehencoder.app.layout.sample.SampleLayoutActivity
 import com.shawpoo.simplehencoder.app.layout.sample.TagLayoutActivity
 import com.shawpoo.simplehencoder.app.text.sample.ProductListActivity
+import com.shawpoo.simplehencoder.app.touch.sample.ScalableImageViewActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +22,10 @@ class MainActivity : AppCompatActivity() {
 
         btn_drawable_and_bitmap.setOnClickListener {
             TagLayoutActivity.open(this)
+        }
+
+        btn_scalable_image_view.setOnClickListener {
+            ScalableImageViewActivity.open(this)
         }
 
     }

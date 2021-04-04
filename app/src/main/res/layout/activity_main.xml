@@ -18,4 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Drawable and Bitmap" />
+    <Button
+        android:id="@+id/btn_scalable_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ScalableImageView" />
 </LinearLayout>
