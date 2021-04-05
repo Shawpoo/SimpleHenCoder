@@ -24,6 +24,7 @@
         <activity android:name=".layout.sample.SampleLayoutActivity" />
         <activity android:name=".layout.sample.TagLayoutActivity" />
         <activity android:name=".touch.sample.ScalableImageViewActivity" />
+        <activity android:name=".touch.sample.MultiTouchViewActivity" />
 
         <meta-data
             android:name="com.shawpoo.simplehencoder.app.util.MyAppGlideModule"
