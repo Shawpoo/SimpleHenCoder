@@ -9,9 +9,9 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.GestureDetector
 import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.View
 import android.widget.OverScroller
-import androidx.core.animation.doOnEnd
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.ViewCompat
 import com.shawpoo.simplehencoder.app.R
@@ -38,18 +38,19 @@ class ScalableImageView(context: Context?, attrs: AttributeSet?) : View(context,
     private var smallScale = 0f
     private var bigScale = 0f
     private var appGestureListener = AppGestureListener()
+    private var appScaleGestureListener = AppScaleGestureListener()
     private var appFlingRunner = AppFlingRunner()
     private var gestureDetector = GestureDetectorCompat(context, appGestureListener)
+    private var scaleGestureDetector = ScaleGestureDetector(context, appScaleGestureListener)
     private var big = false
-    private var scalaFraction = 0f
+    private var currentScale = 0f
         set(value) {
             field = value
             invalidate()
         }
 
-    private val scalaAnimator: ObjectAnimator by lazy {
-        ObjectAnimator.ofFloat(this, "scalaFraction", 0f, 1f)
-    }
+    private val scalaAnimator: ObjectAnimator =
+        ObjectAnimator.ofFloat(this, "currentScale", smallScale, bigScale)
     private val scroller = OverScroller(context)
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -65,18 +66,24 @@ class ScalableImageView(context: Context?, attrs: AttributeSet?) : View(context,
             bigScale = width / bitmap.width.toFloat()
             smallScale = height / bitmap.height.toFloat() * EXTRA_SCALE_FACTOR
         }
+        currentScale = smallScale
+        scalaAnimator.setFloatValues(smallScale, bigScale)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return gestureDetector.onTouchEvent(event)
+        scaleGestureDetector.onTouchEvent(event)
+        if (!scaleGestureDetector.isInProgress) {
+            gestureDetector.onTouchEvent(event)
+        }
+        return true
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
+        val scalaFraction = (currentScale - smallScale) / (bigScale - smallScale)
         canvas.translate(offsetX * scalaFraction, offsetY * scalaFraction)
-        val scale = smallScale + (bigScale - smallScale) * scalaFraction
-        canvas.scale(scale, scale, width / 2f, height / 2f)
+        canvas.scale(currentScale, currentScale, width / 2f, height / 2f)
         canvas.drawBitmap(bitmap, originalOffsetX, originalOffsetY, paint)
     }
 
@@ -137,6 +144,28 @@ class ScalableImageView(context: Context?, attrs: AttributeSet?) : View(context,
             }
             return true // 返回值无意义
         }
+    }
+
+    inner class AppScaleGestureListener : ScaleGestureDetector.OnScaleGestureListener {
+        override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
+            offsetX = (detector.focusX - width / 2f) * (1 - bigScale / smallScale)
+            offsetY = (detector.focusY - height / 2f) * (1 - bigScale / smallScale)
+            return true
+        }
+
+        override fun onScaleEnd(detector: ScaleGestureDetector?) {
+        }
+
+        override fun onScale(detector: ScaleGestureDetector): Boolean {
+            val tempCurrentScale = currentScale * detector.scaleFactor
+            return if (tempCurrentScale < smallScale || tempCurrentScale > bigScale) {
+                false
+            } else {
+                currentScale *= detector.scaleFactor
+                true
+            }
+        }
+
     }
 
     inner class AppFlingRunner : Runnable {
