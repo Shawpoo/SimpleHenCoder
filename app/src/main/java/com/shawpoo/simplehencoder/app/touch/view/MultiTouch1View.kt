@@ -14,7 +14,7 @@ import com.shawpoo.simplehencoder.app.ext.dp
 /**
  * @author: wuxiaopeng
  * @date: 2021/4/5
- * @desc:
+ * @desc: 跟随手指拖动的View，计算坐标和位移
  */
 class MultiTouch1View(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
